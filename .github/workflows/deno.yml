@@ -18,6 +18,9 @@ on:
 
 permissions:
   contents: read
+  
+env:
+  BDUSS:  ${{ secrets.BDUSS }}
 
 jobs:
   run:
@@ -33,8 +36,7 @@ jobs:
           key: ${{ runner.os }}-deno-${{ hashFiles('**/*') }}
           restore-keys: ${{ runner.os }}-deno-
           path: |
-            /home/runner/.deno
-            /home/runner/.cache/deno/deps/
+            /opt/hostedtoolcache/deno/
 
       - name: Setup Deno
         # uses: denoland/setup-deno@v1
