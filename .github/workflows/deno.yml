@@ -36,16 +36,14 @@ jobs:
         with:
           key: ${{ runner.os }}-deno-${{ hashFiles('**/*') }}
           restore-keys: ${{ runner.os }}-deno-
-          path: ${{ env.DENO_DIR }}
+          path: |
+            ${{ env.DENO_DIR }}
+            /opt/hostedtoolcache/deno
 
       - name: Setup Deno
         uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
-
-      # Uncomment this step to verify the use of 'deno fmt' on each commit.
-      - name: Install Deps
-        run: deno cache main.ts
 
       - name: Run
         run: deno run -A --unstable main.ts
